@@ -1,0 +1,45 @@
+.avatar {
+  position: relative;
+}
+
+.avatar::before,
+.avatar::after {
+  --scale: 0;
+
+  content: attr(data-tooltip);
+  background-color: #333;
+  color: white;
+  position: absolute;
+  left: 50%;
+
+  transition: 150ms transform;
+  width: max-content;
+  /* max-width: 100%; */
+  padding: 8px;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.directiontop::after,
+.directiontop::before {
+  top: -0.25rem;
+  transform: translateX(-50%) translateY(-100%) scale(var(--scale));
+  transform-origin: bottom center;
+}
+
+.directiondown::after,
+.directiondown::before {
+  bottom: -0.25rem;
+  transform: translateX(-50%) translateY(100%) scale(var(--scale));
+  transform-origin: top center;
+}
+
+.avatar:hover::after,
+.avatar:hover::before {
+  --scale: 1;
+}
+
+.disabled:hover::after,
+.disabled:hover::before {
+  --scale: 0;
+}
